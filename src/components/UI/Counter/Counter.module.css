@@ -1,0 +1,31 @@
+.Counter{
+    display: flex;
+    align-items: center;
+}
+
+.Plus,
+.Minus{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color:#fcbf49;
+    width: 35rem;
+    height: 35rem;
+    border-radius: 50%;
+    
+   
+}
+
+
+.Count{
+    font-size: 32rem;
+    margin: 0 5px;
+}
+
+
+.Minus{
+    background-color: white;
+    border: 1px solid black;
+}

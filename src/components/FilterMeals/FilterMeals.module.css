@@ -1,0 +1,43 @@
+.FilterMeals{
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 120rem;
+    background-color: white;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+}
+
+.FilterBox{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+   
+}
+ 
+
+.SearchInput{
+    width: 650rem;
+    height: 70rem;
+    border: none;
+    border-radius: 16px;
+    background-color: #f2f2f2;
+    padding-left: 60rem;
+    outline: none;
+    font-size: 32rem;
+
+}
+
+
+.FilterIcon{
+    font-size: 40rem;
+    position: absolute;
+    left: 10rem;
+    color: #aaa;
+}
+

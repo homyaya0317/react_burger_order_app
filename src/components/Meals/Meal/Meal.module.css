@@ -1,0 +1,54 @@
+.Meal{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 30rem 20rem;
+    padding-right: 30rem;
+   
+}
+
+.ImgWrap{
+    width: 280rem;
+
+}
+img{
+    width: 100%;
+    
+}
+
+.MealInfo{
+    
+    flex: auto;
+
+}
+
+.MealTitle{
+    margin: 0;
+   
+}
+
+.MealPrice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    
+}
+
+.Price{
+    font-weight: bold;
+    font-size: 30rem;
+ 
+}
+
+.Price::before{
+    content: "$";
+
+}
+
+
+
+
+
+
+
