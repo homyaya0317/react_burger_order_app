@@ -25,7 +25,7 @@ const CartDetails = () =>{
 
     const yesHandler = (e)=> {
         
-        ctx.clearCart()
+        ctx.cartDispatch({type:"CLEAR"})
         setShowConfirm(false)
 
     }

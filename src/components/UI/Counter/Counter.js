@@ -13,13 +13,12 @@ const Counter = (props) => {
 
 
     const onAdd = () => {
-        ctx.addCart(props.meal)
+        ctx.cartDispatch({type:"ADD",meal:props.meal})
     }
 
     const onRemove = () => {
-        ctx.removeCart(props.meal)
+        ctx.cartDispatch({type:"SUB",meal:props.meal})
     }
-
 
 
 

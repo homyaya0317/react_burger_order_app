@@ -16,7 +16,6 @@ const Cart = () => {
 
 
     const showCheckoutHandler = () => {
-       
     
         if(ctx.totalCount ===0) return;
         setShowCheckout(true)
@@ -40,6 +39,7 @@ const Cart = () => {
     useEffect(()=>{
         if(ctx.totalCount === 0){
            setShowCartDetails(false)
+           setShowCheckout(false)
 
         }
 

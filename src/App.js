@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import Meals from "./components/Meals/Meals"
 
 import CartContext from "./store/CartContext";
@@ -58,7 +58,62 @@ const MEALS_DATA = [
 ];
 
 
+let newCartData
+const cartReducer = (state, action) => {
 
+  switch (action.type) {
+    case "ADD":
+       newCartData = {...state}
+
+      if (newCartData.item.find(item => item === action.meal)) {
+        action.meal.amount += 1
+      } else {
+
+        newCartData.item.push(action.meal)
+        action.meal.amount = 1
+
+      }
+
+      newCartData.totalPrice += action.meal.price
+      newCartData.totalCount += 1
+
+      return newCartData
+
+    case "SUB":
+
+      newCartData = {...state}
+
+      const targetMeal = newCartData.item.find(item => item === action.meal)
+
+
+      targetMeal.amount--
+
+      if (targetMeal.amount === 0) {
+        newCartData.item.splice(newCartData.item.indexOf(action.meal), 1)
+      }
+
+      newCartData.totalPrice -= action.meal.price
+      newCartData.totalCount -= 1
+
+
+      return newCartData
+
+    case "CLEAR":
+       newCartData = {...state}
+
+      newCartData.item.forEach(item => delete item.amount)
+      newCartData.item = [];
+      newCartData.totalCount = 0;
+      newCartData.totalPrice = 0;
+      return newCartData
+
+    default:
+      return state
+      
+  }
+
+
+}
 
 
 function App() {
@@ -69,77 +124,25 @@ function App() {
     keyword = keyword.toLowerCase();
     const newMealsData = MEALS_DATA.filter(item => item.title.toLowerCase().indexOf(keyword) !== -1);
     setMealsData(newMealsData);
-};
+  };
 
 
-
-
-  const [cartData, setCartData] = useState({
+  const [cartData, cartDispatch] = useReducer(cartReducer, {
     item: [],
     totalPrice: 0,
     totalCount: 0,
   })
 
-
-  const addCart = (meal) => {
-
-    const newCartData = {...cartData}
-
-    if(newCartData.item.find(item=>item===meal)){
-        meal.amount += 1
-    }else{
-
-      newCartData.item.push(meal)
-      meal.amount = 1
-
-    }
-
-    newCartData.totalPrice += meal.price
-    newCartData.totalCount += 1
-
-    setCartData(newCartData)
-
-  }
-
-  const removeCart = (meal) => {
-    const newCartData = {...cartData}
-
-    const targetMeal = newCartData.item.find(item=>item==meal)
-
-    
-    targetMeal.amount--
-
-    if(targetMeal.amount === 0){
-      newCartData.item.splice(newCartData.item.indexOf(meal),1)
-    }
-
-    newCartData.totalPrice -= meal.price
-    newCartData.totalCount -= 1
-
-   
-    setCartData(newCartData)
-  
-  }
-
-  const clearCart = () => {
-    const newCartData = {...cartData}
-
-    newCartData.item.forEach(item=>delete item.amount)
-    newCartData.item = [];
-    newCartData.totalCount = 0;
-    newCartData.totalPrice = 0;
-    setCartData(newCartData)
-
-  }
+ 
 
 
   return (
 
-    <CartContext.Provider value={{...cartData,addCart,removeCart,clearCart}}>
+    <CartContext.Provider value={{ ...cartData, cartDispatch }}>
       <div>
-        <FilterMeals onFilter = {filterHandler}/>
+        <FilterMeals onFilter={filterHandler} />
         <Meals meals={mealsData} />
-        <Cart/>
+        <Cart />
       </div>
 
     </CartContext.Provider>

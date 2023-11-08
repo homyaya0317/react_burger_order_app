@@ -6,16 +6,9 @@ const CartContext = React.createContext({
     item:[],
     totalPrice:"",
     totalCount:"",
-    addCart:()=>{
-
-    },
-    removeCart:()=>{
-        
-    },
-    clearCart:() => {
+    cartDispatch:()=>{
         
     }
-
 
 })
 
