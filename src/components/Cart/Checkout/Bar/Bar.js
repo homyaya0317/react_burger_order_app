@@ -5,7 +5,7 @@ const Bar = (props) => {
     return (
         <div className={classes.Bar}>
             <div className={classes.TotalPrice}>{props.totalPrice}</div>
-            <button className={classes.Button}>去支付</button>
+            <button className={classes.Button}>checkout</button>
         </div>
     );
 };
